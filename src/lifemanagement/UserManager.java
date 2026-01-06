@@ -23,7 +23,8 @@ public class UserManager {
             return false;
         }
         Document d = new Document("username", username)
-                .append("password", password);
+                .append("password", password)
+                .append("theme", "dark"); // default tema
         collection.insertOne(d);
         return true;
     }
@@ -42,5 +43,30 @@ public class UserManager {
         }
 
         return 1;
+    }
+
+    public boolean updateUsername(String oldUsername, String newUsername, String oldPassword) {
+        Document query = new Document("username", oldUsername)
+                .append("password", oldPassword);
+        Document update = new Document("$set", new Document("username", newUsername));
+        return collection.updateOne(query, update).getModifiedCount() == 1;
+    }
+
+    public boolean updatePassword(String username, String oldPassword, String newPassword) {
+        Document query = new Document("username", username)
+                .append("password", oldPassword);
+        Document update = new Document("$set", new Document("password", newPassword));
+        return collection.updateOne(query, update).getModifiedCount() == 1;
+    }
+
+    public boolean updateTheme(String username, String theme) {
+        Document query = new Document("username", username);
+        Document update = new Document("$set", new Document("theme", theme));
+        return collection.updateOne(query, update).getModifiedCount() == 1;
+    }
+
+    public boolean deleteUser(String username) {
+        Document query = new Document("username", username);
+        return collection.deleteOne(query).getDeletedCount() == 1;
     }
 }

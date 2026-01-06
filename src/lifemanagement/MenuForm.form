@@ -5,7 +5,10 @@
     <constraints>
       <xy x="20" y="20" width="497" height="507"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-15592942"/>
+      <enabled value="false"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="d4cc9" class="javax.swing.JButton" binding="viewProfile">
@@ -13,6 +16,8 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-16727297"/>
+          <font name="Arial Black" style="1"/>
           <text value="View Profile"/>
         </properties>
       </component>
@@ -21,6 +26,8 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-16727297"/>
+          <font name="Arial Black" style="1"/>
           <text value="Financeapp"/>
         </properties>
       </component>
@@ -29,6 +36,8 @@
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-16727297"/>
+          <font name="Arial Black" style="1"/>
           <text value="My Trackers"/>
         </properties>
       </component>

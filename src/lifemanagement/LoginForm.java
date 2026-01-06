@@ -41,11 +41,16 @@ public class LoginForm {
                 JOptionPane.showMessageDialog(null, "Invalid password");
             } else {
                 JFrame frame = new JFrame("Life Management System - Main Menu");
-                frame.setContentPane(new MenuForm().getMainPanel());
+                frame.setContentPane(new MenuForm(username).getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(600, 400);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+
+                java.awt.Window window = SwingUtilities.getWindowAncestor(mainPanel);
+                if (window != null) {
+                    window.dispose();
+                }
             }
         });
 
