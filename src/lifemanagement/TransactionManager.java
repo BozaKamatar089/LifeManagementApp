@@ -27,29 +27,29 @@ public class TransactionManager {
         while (cursor.hasNext()) {
             Document d = cursor.next();
 
-            // --- type ---
+
             String type = d.getString("type");
             if (type == null) {
-                // ako je stari dokument sa "Vrsta", probaj i to
+
                 type = d.getString("Vrsta");
             }
             if (type == null) {
-                // ako ni to nema, preskačemo dokument
+
                 continue;
             }
 
-            // --- description ---
+
             String description = d.getString("description");
             if (description == null) {
                 description = d.getString("Opis");
             }
             if (description == null) description = "";
 
-            // --- amount ---
+
             double amount = 0.0;
             Object amountObj = d.get("amount");
             if (amountObj == null) {
-                amountObj = d.get("Iznos"); // podrži stare dokumente
+                amountObj = d.get("Iznos");
             }
 
             if (amountObj instanceof Number) {
@@ -58,11 +58,11 @@ public class TransactionManager {
                 try {
                     amount = Double.parseDouble((String) amountObj);
                 } catch (NumberFormatException e) {
-                    // ne možemo pretvoriti u broj -> preskačemo ovaj dokument
+
                     continue;
                 }
             } else {
-                // ako amount i dalje nije validan -> preskačemo
+
                 continue;
             }
 
