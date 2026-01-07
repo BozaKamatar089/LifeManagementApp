@@ -81,6 +81,7 @@
           <model>
             <item value="Dark"/>
             <item value="Light"/>
+            <item value="Deep Blue"/>
           </model>
         </properties>
       </component>
