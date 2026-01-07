@@ -14,9 +14,20 @@ public class MenuForm {
     public MenuForm(String currentUsername) {
         this.currentUsername = currentUsername;
 
+        Theme.apply(mainPanel);
+
         financeApp.addActionListener(e -> {
             JFrame frame = new JFrame("Personal Finance Tracker");
             frame.setContentPane(new FinanceTrackerForm().getMainPanel());
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(800, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+
+        myTracker.addActionListener(e -> {
+            JFrame frame = new JFrame("My Trackers");
+            frame.setContentPane(new TrackersMenu(currentUsername).getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setSize(800, 600);
             frame.setLocationRelativeTo(null);

@@ -34,8 +34,26 @@ public class TrackersMenu {
             frame.setVisible(true);
         });
 
-    }
+        workoutTrackerButton.addActionListener(e -> {
+            JFrame frame = new JFrame("Workout Tracker");
+            frame.setContentPane(new WorkoutForm(currentUsername).getMainPanel());
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(600, 400);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
 
+        mealPlannerButton.addActionListener(e -> {
+            JFrame frame = new JFrame("Meal Planner");
+            frame.setContentPane(new MealForm(currentUsername).getMainPanel());
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(800, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+
+
+    }
     public JPanel getMainPanel() {
         return mainPanel;
     }

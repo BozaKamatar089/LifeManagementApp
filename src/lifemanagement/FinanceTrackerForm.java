@@ -24,6 +24,8 @@ public class FinanceTrackerForm {
     public FinanceTrackerForm() {
         manager = new TransactionManager();
 
+        Theme.apply(mainPanel);
+
         loadDataIntoTable();
         updateSummary();
 
@@ -86,7 +88,4 @@ public class FinanceTrackerForm {
         return mainPanel;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

@@ -69,4 +69,13 @@ public class UserManager {
         Document query = new Document("username", username);
         return collection.deleteOne(query).getDeletedCount() == 1;
     }
+
+    public String getUserTheme(String username) {
+        Document query = new Document("username", username);
+        Document result = collection.find(query).first();
+        if (result == null) return "dark";
+        String theme = result.getString("theme");
+        return (theme != null) ? theme : "dark";
+    }
+
 }

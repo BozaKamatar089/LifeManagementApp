@@ -16,6 +16,8 @@ public class LoginForm {
     public LoginForm() {
         userManager = new UserManager();
 
+        Theme.apply(mainPanel);
+
         loginButton.addActionListener(e -> {
             String username = usernameField.getText().trim();
             String password = new String(passwordField.getPassword());
@@ -40,6 +42,9 @@ public class LoginForm {
             } else if (result == 0) {
                 JOptionPane.showMessageDialog(null, "Invalid password");
             } else {
+                String theme = userManager.getUserTheme(username);
+                ThemeManager.setCurrentTheme(theme);
+
                 JFrame frame = new JFrame("Life Management System - Main Menu");
                 frame.setContentPane(new MenuForm(username).getMainPanel());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

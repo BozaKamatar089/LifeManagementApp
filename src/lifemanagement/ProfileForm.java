@@ -29,6 +29,8 @@ public class ProfileForm {
         this.currentUsername = currentUsername;
         this.userManager = new UserManager();
 
+        Theme.apply(mainPanel);
+
         oldUsernameField.setText(currentUsername);
 
         if (themeCombo.getItemCount() == 0) {
@@ -36,8 +38,6 @@ public class ProfileForm {
             themeCombo.addItem("light");
         }
         themeCombo.setSelectedItem("dark");
-
-        mainPanel.setBackground(new Color(18, 18, 18));
 
         changeUsernameButton.addActionListener(e -> {
             String oldUsername = oldUsernameField.getText().trim();
@@ -83,7 +83,7 @@ public class ProfileForm {
 
             if (newPass.length() < 8) {
                 JOptionPane.showMessageDialog(mainPanel,
-                        "Pasword must be at least 8 characters!",
+                        "Password must be at least 8 characters!",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -108,18 +108,35 @@ public class ProfileForm {
         saveButton.addActionListener(e -> {
             String selected = (String) themeCombo.getSelectedItem();
             boolean ok = userManager.updateTheme(currentUsername, selected);
+
             if (ok) {
+                ThemeManager.setCurrentTheme(selected);
+
                 JOptionPane.showMessageDialog(mainPanel,
-                        "Theme saved : " + selected,
+                        "Theme Saved: " + selected,
                         "Info",
                         JOptionPane.INFORMATION_MESSAGE);
+
+                java.awt.Window thisWindow = SwingUtilities.getWindowAncestor(mainPanel);
+                if (thisWindow != null) {
+                    thisWindow.dispose();
+                }
+
+                JFrame frame = new JFrame("Life Management System - Main Menu");
+                frame.setContentPane(new MenuForm(currentUsername).getMainPanel());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(600, 400);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(mainPanel,
-                        "Theme could not be saved!",
+                        "There was an error while updating the theme.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
         });
+
 
         logoutButton.addActionListener(e -> {
             Window window = SwingUtilities.getWindowAncestor(mainPanel);
